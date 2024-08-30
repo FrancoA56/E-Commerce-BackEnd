@@ -14,6 +14,6 @@ const sequelize = new Sequelize({
   models: [path.join(__dirname, "/models")], // Ruta donde están los modelos Sequelize
 });
 
-const { User, Product, Invoice, CartDetail, InvoiceItem, Order, OrderItem, ProductGallery, Review} = sequelize.models;
+const { User, Product, Invoice, CartDetail, InvoiceItem, Order, OrderItem, ProductGallery, Review, Category, Label, ProductCategory, ProductLabel} = sequelize.models;
 
-export { sequelize, User, Product, Invoice, CartDetail, InvoiceItem, Order, OrderItem, ProductGallery, Review};
+export { sequelize, User, Product, Invoice, CartDetail, InvoiceItem, Order, OrderItem, ProductGallery, Review, Category, Label, ProductCategory, ProductLabel};

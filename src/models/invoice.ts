@@ -14,12 +14,7 @@ import {
   } from "sequelize-typescript";
   import User from "./user";
   import InvoiceItem from "./invoiceItems";
-  
-  enum PaymentMethod {
-    MERCADO_PAGO = "mercado_pago",
-    PAYPAL = "paypal",
-    BANK_TRANSFER = "bank_transfer",
-  }
+  import { PaymentMethod } from "../utils/enums";
   
   const paymentMethod = Object.values(PaymentMethod);
   

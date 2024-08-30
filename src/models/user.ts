@@ -8,6 +8,7 @@ import {
     DeletedAt,
     IsEmail,
     Length,
+    Default,
     IsUrl,
     IsDate,
     HasMany,
@@ -59,6 +60,7 @@ import {
     @Column
     zipcode!: number;
   
+    @Default(false)
     @Column
     isDisabled!: boolean;
   
