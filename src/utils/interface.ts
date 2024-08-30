@@ -32,3 +32,8 @@ export interface CategoryInput {
   name: string;
   isDisable?: boolean;
 }
+
+export interface BrandInput {
+  name: string;
+  isDisable?: boolean;
+}

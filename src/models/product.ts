@@ -6,6 +6,8 @@ import {
   CreatedAt,
   UpdatedAt,
   DeletedAt,
+  ForeignKey,
+  BelongsTo,
   Length,
   IsDate,
   AutoIncrement,
@@ -20,9 +22,10 @@ import CartDetail from "./cartDetail";
 import Review from "./review";
 import OrderDetail from "./orderItems";
 import Category from "./category";
-import Label from "./label";
 import ProductCategory from "./categoryProduct";
+import Label from "./label";
 import ProductLabel from "./labelProduct";
+import Brand from "./brand";
 import { NonAttribute } from "sequelize";
 
 @Table
@@ -45,6 +48,9 @@ class Product extends Model<Product> {
 
   @Column
   image!: string;
+
+  @Column
+  stock!: number;
 
   @Length({ max: 350 }) // Descripción corta con máximo 350 caracteres
   @Column
@@ -79,6 +85,14 @@ class Product extends Model<Product> {
   @Column
   deletedAt?: Date;
 
+  // Relación uno a muchos con Brand
+  @ForeignKey(() => Brand)
+  @Column
+  brandId!: number;
+
+  @BelongsTo(() => Brand)
+  brand?: NonAttribute<Brand>;
+
   // Relación muchos a muchos con Category
   @BelongsToMany(() => Category, () => ProductCategory)
   categories?: NonAttribute<Category[]>;
@@ -87,19 +101,19 @@ class Product extends Model<Product> {
   @BelongsToMany(() => Label, () => ProductLabel)
   labels?: NonAttribute<Label[]>;
 
-  @HasMany(() => InvoiceDetail, { as: 'invoiceDetails' })
+  @HasMany(() => InvoiceDetail, { as: "invoiceDetails" })
   invoiceDetails?: NonAttribute<InvoiceDetail[]>;
 
-  @HasMany(() => OrderDetail, { as: 'orderDetails' })
+  @HasMany(() => OrderDetail, { as: "orderDetails" })
   orderDetails?: NonAttribute<OrderDetail[]>;
 
-  @HasMany(() => CartDetail, { as: 'cartDetails' })
+  @HasMany(() => CartDetail, { as: "cartDetails" })
   cartDetails?: NonAttribute<CartDetail[]>;
 
-  @HasMany(() => ProductGallery, { as: 'gallery' })
+  @HasMany(() => ProductGallery, { as: "gallery" })
   gallery?: NonAttribute<ProductGallery[]>;
 
-  @HasMany(() => Review, { as: 'reviews' })
+  @HasMany(() => Review, { as: "reviews" })
   reviews?: NonAttribute<Review[]>;
 }
 

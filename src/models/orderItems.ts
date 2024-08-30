@@ -7,7 +7,6 @@ import {
     PrimaryKey,
     AutoIncrement
   } from "sequelize-typescript";
-  
   import Product from "./product";
   import Order from "./order";
   
@@ -21,14 +20,14 @@ import {
   
     @ForeignKey(() => Product)
     @Column
-    presetId!: number;
+    productId!: number;
   
     @ForeignKey(() => Order)
     @Column
     orderId!: number;
   
     @BelongsTo(() => Product)
-    preset!: Product;
+    product!: Product;
   
     @BelongsTo(() => Order)
     order!: Order;

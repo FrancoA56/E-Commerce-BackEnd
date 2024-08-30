@@ -8,11 +8,11 @@ import categoryRouter from "./category";
 
 const router = Router();
 
-router.use("/product", productRouter)
-router.use("/shop", shopRouter)
-router.use("/user", userRouter)
-router.use("/review", reviewRouter)
-router.use("/label", labelRouter)
-router.use("/category", categoryRouter)
+router.use("/product", productRouter);
+router.use("/shop", shopRouter);
+router.use("/user", userRouter);
+router.use("/review", reviewRouter);
+router.use("/label", labelRouter);
+router.use("/category", categoryRouter);
 
 export default router;

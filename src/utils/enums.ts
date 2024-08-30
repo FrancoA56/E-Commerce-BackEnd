@@ -3,3 +3,9 @@ export enum PaymentMethod {
   PAYPAL = "paypal",
   BANK_TRANSFER = "bank_transfer",
 }
+
+export enum UserRoles {
+  ADMIN = "admin",
+  CLIENT = "client",
+  EMPLOYEE = "employee"
+}
