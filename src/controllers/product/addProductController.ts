@@ -10,9 +10,11 @@ const addProductController = async (
       name?: string;
       code?: string;
       price?: number;
+      stock?: number;
       category?: number[]; // array of category IDs
       label?: number[]; // array of label IDs
       image?: string;
+      brand?: number; // brand ID
       isDisable?: boolean;
       gallery?: string[];
       releasedAt?: string;
@@ -25,9 +27,11 @@ const addProductController = async (
       name,
       code,
       price,
+      stock,
       category,
       label,
       image,
+      brand,
       isDisable,
       gallery,
       releasedAt,
@@ -37,20 +41,20 @@ const addProductController = async (
     }: Product = req.body;
 
     // Verificación de existencia de los campos obligatorios
-    if (!name || !code || !price || !category || !image) {
+    if (!name || !code || !price || !category || !image || !stock || !brand) {
       res.status(400).json({ error: "Missing required fields" });
       return;
     }
 
     // Verifica que 'category' sea un array
     if (!Array.isArray(category)) {
-      res.status(400).json({ error: "Category must be an array of categories" });
+      res.status(400).json({ error: "Category must be an array of category IDs" });
       return;
     }
 
     // Verifica que 'label' sea un array si se proporciona
     if (label && !Array.isArray(label)) {
-      res.status(400).json({ error: "Label must be an array of labels" });
+      res.status(400).json({ error: "Label must be an array of label IDs" });
       return;
     }
 
@@ -60,6 +64,8 @@ const addProductController = async (
       price,
       category,
       label,
+      stock,
+      brand,
       image,
       gallery,
       isDisable,

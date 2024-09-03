@@ -2,20 +2,20 @@ import {
   Model,
   Table,
   Column,
-  IsEmail,
   BelongsTo,
   HasMany,
   ForeignKey,
   IsDate,
   CreatedAt,
   PrimaryKey,
-  AutoIncrement,
+  AutoIncrement
 } from "sequelize-typescript";
 import User from "./user";
-import Product from "./product";
+import CartProduct from "./cartProduct";
 
 @Table
-class CartDetail extends Model<CartDetail> {
+class Cart extends Model<Cart> {
+
   @PrimaryKey
   @AutoIncrement
   @Column
@@ -26,20 +26,15 @@ class CartDetail extends Model<CartDetail> {
   @Column
   createdAt!: Date;
 
-  @IsEmail
-  @Column
   @ForeignKey(() => User)
+  @Column
   userEmail!: string;
 
   @BelongsTo(() => User)
   user!: User;
 
-  @ForeignKey(() => Product)
-  @Column
-  productId!: number;
-
-  @BelongsTo(() => Product)
-  product!: Product;
+  @HasMany(() => CartProduct)
+  cartProducts!: CartProduct[];
 }
 
-export default CartDetail;
+export default Cart;

@@ -5,9 +5,11 @@ export const getProductByIdHandler = async (id: number) => {
     include: [
       { association: "gallery" },
       { association: "invoiceDetails" },
-      { association: "orderDetails" },
-      { association: "cartDetails" },
+      { association: "cart" },
       { association: "reviews" },
+      { association: "categories" },
+      { association: "labels" },
+      { association: "brand" },
     ],
   });
 

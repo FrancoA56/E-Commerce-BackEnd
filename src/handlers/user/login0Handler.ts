@@ -13,13 +13,12 @@ const login0Handler = async (
     const isBanned = user.dataValues.isDisabled
     if(isBanned) throw new Error ("User is banned.")
 
-    const { name, logo, about, firstname, lastname, country, city, zipcode } =
+    const { name, logo, firstname, lastname, country, city, zipcode } =
       user.dataValues;
     const userInfo: UserInfo = {
       email,
       name,
       logo,
-      about,
       firstname,
       lastname,
       country,

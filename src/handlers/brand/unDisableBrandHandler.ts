@@ -1,6 +1,6 @@
 import { Brand } from "../../db";
 
-export const disableBrandHandler = async (
+export const unDisableBrandHandler = async (
   id: number
 ): Promise<InstanceType<typeof Brand> | null> => {
   try {
@@ -10,8 +10,9 @@ export const disableBrandHandler = async (
     if (!brand) {
       throw new Error("Brand not found");
     }
+
     // Guardar los cambios
-    await Brand.update({ isDisable: true }, { where: { id } });
+    await Brand.update({ isDisable: false }, { where: { id } });
 
     return await Brand.findOne({ where: { id } });
   } catch (error) {

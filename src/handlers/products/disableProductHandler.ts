@@ -9,17 +9,10 @@ export const disableProductHandler = async (id: number) => {
       throw new Error("Product not found");
     }
 
-    // Alterna el valor de isDisable
-    product.dataValues.isDisable = !product.dataValues.isDisable;
-
-    // Guarda el producto actualizado en la base de datos
-    await product.save();
+    await Product.update({ isDisable: true }, { where: { id } });
 
     return {
-      message: `Product ${
-        product.dataValues.isDisable ? "disabled" : "enabled"
-      } successfully`,
-      product,
+      message: `Product succesfully disabled`,
     };
   } catch (error: any) {
     throw new Error(error.message);

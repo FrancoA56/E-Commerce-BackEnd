@@ -17,12 +17,9 @@ import {
   AutoIncrement,
 } from "sequelize-typescript";
 import Invoice from "./invoice";
-import Order from "./order";
 import Review from "./review";
-import Cart from "./cartDetail";
+import Cart from "./cart";
 import { UserRoles } from "../utils/enums";
-
-const userRoles = Object.values(UserRoles);
 
 @Table
 class User extends Model<User> {
@@ -30,8 +27,8 @@ class User extends Model<User> {
   @Column
   id?: number;
 
-  @IsEmail
   @PrimaryKey
+  @IsEmail
   @Column
   email!: string;
 
@@ -71,10 +68,12 @@ class User extends Model<User> {
   @Column
   phone!: number;
 
+  @Default(UserRoles.CLIENT)
   @Column({
-    type: DataType.ENUM(...userRoles),
+    type: DataType.ENUM(...Object.values(UserRoles)),
   })
   role!: string;
+  
 
   @Default(false)
   @Column
@@ -98,14 +97,11 @@ class User extends Model<User> {
   @HasMany(() => Invoice)
   invoices!: Invoice[];
 
-  @HasOne(() => Order)
-  order!: Order;
-
   @HasMany(() => Review)
   reviews!: Review[];
 
   @HasMany(() => Cart)
-  cart!: Cart[];
+  carts!: Cart[];
 }
 
 export default User;

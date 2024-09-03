@@ -1,4 +1,4 @@
-import { Product, ProductGallery, ProductCategory, ProductLabel, Category, Label } from "../../db";
+import { Product, ProductGallery, ProductCategory, ProductLabel, Category, Label, Brand } from "../../db";
 import { ProductInput } from "../../utils/interface";
 
 export const addProductHandler = async (
@@ -7,6 +7,8 @@ export const addProductHandler = async (
   const {
     name,
     code,
+    stock,
+    brand,
     price,
     category, // array of category IDs
     label, // array of label IDs
@@ -19,7 +21,7 @@ export const addProductHandler = async (
     instructions,
   } = productData;
 
-  if (!name || !code || !price || !category || !image) {
+  if (!name || !code || !price || !category || !image || !brand) {
     throw new Error("Missing required data to create the product");
   }
 
@@ -28,13 +30,16 @@ export const addProductHandler = async (
       name,
       code,
       price,
+      stock,
       image,
       isDisable,
       releasedAt,
       shortDescription, // Se añade la descripción corta
       longDescription, // Se añade la descripción larga
       instructions, // Se añaden las instrucciones
+      brandId: brand
     });
+
 
     // Asociar categorías
     if (category && category.length > 0) {

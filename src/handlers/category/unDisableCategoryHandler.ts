@@ -1,6 +1,6 @@
 import { Category } from "../../db";
 
-export const disableCategoryHandler = async (
+export const unDisableCategoryHandler = async (
   id: number
 ): Promise<InstanceType<typeof Category> | null> => {
   try {
@@ -12,7 +12,7 @@ export const disableCategoryHandler = async (
     }
 
     // Guardar los cambios
-    await Category.update({ isDisable: true }, { where: { id } });
+    await Category.update({ isDisable: false }, { where: { id } });
 
     return await Category.findOne({ where: { id } });
   } catch (error) {

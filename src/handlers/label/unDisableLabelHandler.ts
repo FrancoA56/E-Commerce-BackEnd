@@ -1,6 +1,6 @@
 import { Label } from "../../db";
 
-export const disableLabelHandler = async (
+export const unDisableLabelHandler = async (
   id: number
 ): Promise<InstanceType<typeof Label> | null> => {
   try {
@@ -12,7 +12,7 @@ export const disableLabelHandler = async (
     }
 
     // Guardar los cambios
-    await Label.update({ isDisable: true }, { where: { id } });
+    await Label.update({ isDisable: false }, { where: { id } });
 
     return await Label.findOne({ where: { id } });
   } catch (error) {

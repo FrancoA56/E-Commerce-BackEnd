@@ -18,9 +18,8 @@ import {
 } from "sequelize-typescript";
 import ProductGallery from "./productGallery";
 import InvoiceDetail from "./invoiceItems";
-import CartDetail from "./cartDetail";
+import CartProduct from "./cartProduct";
 import Review from "./review";
-import OrderDetail from "./orderItems";
 import Category from "./category";
 import ProductCategory from "./categoryProduct";
 import Label from "./label";
@@ -66,6 +65,7 @@ class Product extends Model<Product> {
   @Column
   isDisable!: boolean;
 
+  @Default(DataType.NOW) 
   @IsDate
   @Column
   releasedAt!: Date;
@@ -104,11 +104,8 @@ class Product extends Model<Product> {
   @HasMany(() => InvoiceDetail, { as: "invoiceDetails" })
   invoiceDetails?: NonAttribute<InvoiceDetail[]>;
 
-  @HasMany(() => OrderDetail, { as: "orderDetails" })
-  orderDetails?: NonAttribute<OrderDetail[]>;
-
-  @HasMany(() => CartDetail, { as: "cartDetails" })
-  cartDetails?: NonAttribute<CartDetail[]>;
+  @HasMany(() => CartProduct, { as: "cart" })
+  cart?: NonAttribute<CartProduct[]>;
 
   @HasMany(() => ProductGallery, { as: "gallery" })
   gallery?: NonAttribute<ProductGallery[]>;

@@ -2,8 +2,10 @@ export interface ProductInput {
   name: string;
   code: string;
   price: number;
+  stock: number;
   category: number[];
   label: number[];
+  brand: number;
   image: string;
   isDisable: boolean;
   gallery: string[];

@@ -1,6 +1,6 @@
 import { Product } from "../../db"; // Asegúrate de ajustar la ruta según tu estructura de proyecto
 
-export const deleteProductHandler = async (id: number) => {
+export const unDisableProductHandler = async (id: number) => {
   try {
     // Busca el producto por ID
     const product = await Product.findByPk(id);
@@ -9,11 +9,10 @@ export const deleteProductHandler = async (id: number) => {
       throw new Error("Product not found");
     }
 
-    // Elimina el producto
-    await Product.destroy({ where: { id } });
+    await Product.update({ isDisable: false }, { where: { id } });
 
     return {
-      message: "Product deleted successfully"
+      message: `Product succesfully abled`,
     };
   } catch (error: any) {
     throw new Error(error.message);
