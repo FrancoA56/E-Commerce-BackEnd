@@ -19,7 +19,7 @@ import {
 import Invoice from "./invoice";
 import Review from "./review";
 import Cart from "./cart";
-import { UserRoles } from "../utils/enums";
+import { UserRoles, UserTypes } from "../utils/enums";
 
 @Table
 class User extends Model<User> {
@@ -73,7 +73,12 @@ class User extends Model<User> {
     type: DataType.ENUM(...Object.values(UserRoles)),
   })
   role!: string;
-  
+
+  @Default(UserTypes.WEB)
+  @Column({
+    type: DataType.ENUM(...Object.values(UserTypes)),
+  })
+  type!: string;
 
   @Default(false)
   @Column

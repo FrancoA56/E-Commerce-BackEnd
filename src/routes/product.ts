@@ -15,6 +15,6 @@ productRouter.get("/:id", getProductByIdController);
 productRouter.put("/:id", editProductController);
 productRouter.put("/disable/:id", disableProductController);
 productRouter.put("/undisable/:id", unDisableProductController);
-productRouter.delete("/delete/:id", deleteProductController);
+productRouter.delete("/:id", deleteProductController);
 
 export default productRouter;

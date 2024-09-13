@@ -13,6 +13,6 @@ labelRouter.put("/:id", editLabelController);
 labelRouter.get("/:id?", getLabelController);
 labelRouter.put("/disable/:id", disableLabelController);
 labelRouter.put("/undisable/:id", unDisableLabelController);
-labelRouter.delete("/delete/:id", deleteLabelController);
+labelRouter.delete("/:id", deleteLabelController);
 
 export default labelRouter;

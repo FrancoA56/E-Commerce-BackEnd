@@ -1,19 +1,22 @@
 import { Category } from "../../db";
 
 export const getCategoryHandler = async (
-  categoryId?: number
-): Promise<
-  InstanceType<typeof Category> | InstanceType<typeof Category>[] | null
-> => {
+  categoryId?: number,
+  paginationOptions?: { limit?: number; offset?: number }
+): Promise<{ rows: InstanceType<typeof Category>[]; count: number }> => {
   try {
     if (categoryId) {
-      // Obtener una etiqueta específica por ID
+      // Obtener una categoría específica por ID
       const category = await Category.findByPk(categoryId);
-      return category;
+      return { rows: category ? [category] : [], count: category ? 1 : 0 };
     } else {
-      // Obtener todas las etiquetas
-      const categorys = await Category.findAll();
-      return categorys;
+      // Obtener todas las categorías con opciones de paginación
+      const { limit, offset } = paginationOptions || {};
+      const categorys = await Category.findAndCountAll({
+        limit,
+        offset,
+      });
+      return categorys; // { rows: [...], count: total }
     }
   } catch (error) {
     throw new Error(`Failed to retrieve category: ${(error as Error).message}`);

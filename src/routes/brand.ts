@@ -13,6 +13,6 @@ brandRouter.put("/:id", editBrandController );
 brandRouter.get("/:id?", getBrandController);
 brandRouter.put("/disable/:id", disableBrandController);
 brandRouter.put("/undisable/:id", unDisableBrandController);
-brandRouter.delete("/delete/:id", deleteBrandController);
+brandRouter.delete("/:id", deleteBrandController);
 
 export default brandRouter;

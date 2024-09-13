@@ -12,6 +12,6 @@ categoryRouter.put("/:id", editCategoryController);
 categoryRouter.get("/:id?", getCategoryController);
 categoryRouter.put("/disable/:id", disableCategoryController);
 categoryRouter.put("/undisable/:id", unDisableCategoryController);
-categoryRouter.delete("/delete/:id", deleteCategoryController);
+categoryRouter.delete("/:id", deleteCategoryController);
 
 export default categoryRouter;

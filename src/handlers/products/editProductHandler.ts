@@ -9,6 +9,7 @@ export const editProductHandler = async (
     name,
     code,
     price,
+    stock,
     category,
     label,
     image,
@@ -36,6 +37,7 @@ export const editProductHandler = async (
       category: category || existingProduct.dataValues.category,
       label: label || existingProduct.dataValues.label,
       image: image || existingProduct.dataValues.image,
+      stock: stock || existingProduct.dataValues.stock,
       isDisable:
         isDisable !== undefined
           ? isDisable
