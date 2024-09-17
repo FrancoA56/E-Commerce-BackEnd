@@ -12,11 +12,11 @@ export const getCategoryHandler = async (
     } else {
       // Obtener todas las categorías con opciones de paginación
       const { limit, offset } = paginationOptions || {};
-      const categorys = await Category.findAndCountAll({
+      const categories = await Category.findAndCountAll({
         limit,
         offset,
       });
-      return categorys; // { rows: [...], count: total }
+      return categories; // { rows: [...], count: total }
     }
   } catch (error) {
     throw new Error(`Failed to retrieve category: ${(error as Error).message}`);
